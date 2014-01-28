@@ -1,4 +1,4 @@
-package sources;
+package restHandlers;
 
 import java.io.File;
 
@@ -8,7 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import sources.UpdateCSV.ContainerPaths;
+import utils.FileResourceMapping;
 
 @Path("/download")
 public class DownloadManager {
@@ -17,7 +17,7 @@ public class DownloadManager {
 	@GET
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public Response downloadFileFissi(){
-		File file = new File(ContainerPaths.avFissi_filePath);		
+		File file = new File(FileResourceMapping.avFissi_filePath);		
 		return Response.ok(file).header("Content-Disposition", "attachment; filename=" + file.getName()).build();
 	}
 	
@@ -25,7 +25,7 @@ public class DownloadManager {
 	@GET
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public Response downloadFileMobili(){
-		File file = new File(ContainerPaths.avMobili_filePath);		
+		File file = new File(FileResourceMapping.avMobili_filePath);		
 		return Response.ok(file).header("Content-Disposition", "attachment; filename=" + file.getName()).build();
 	}
 	

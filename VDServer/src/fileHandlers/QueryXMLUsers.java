@@ -1,4 +1,4 @@
-package sources;
+package fileHandlers;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,10 +23,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import sources.UpdateCSV.ContainerPaths;
+import utils.FileResourceMapping;
 
 
-public class QueryXML {
+public class QueryXMLUsers {
 	
 	public String login(String eMail, String pw) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException,
 			TransformerException {
@@ -37,7 +37,7 @@ public class QueryXML {
 		Document doc = null;
 		XPathExpression expr = null;
 		builder = factory.newDocumentBuilder();
-		doc = builder.parse(ContainerPaths.users_filePath);
+		doc = builder.parse(FileResourceMapping.users_filePath);
 
 		// create an XPathFactory
 		XPathFactory xFactory = XPathFactory.newInstance();
@@ -68,7 +68,7 @@ public class QueryXML {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(ContainerPaths.users_filePath));
+			StreamResult result = new StreamResult(new File(FileResourceMapping.users_filePath));
 			transformer.transform(source, result);
 			System.out.println("user " + eMail + " registered");
 			return "REG";
@@ -102,7 +102,7 @@ public class QueryXML {
 		Document doc = null;
 		XPathExpression expr = null;
 		builder = factory.newDocumentBuilder();
-		doc = builder.parse(ContainerPaths.users_filePath);
+		doc = builder.parse(FileResourceMapping.users_filePath);
 		// create an XPathFactory
 		XPathFactory xFactory = XPathFactory.newInstance();
 
@@ -139,7 +139,7 @@ public class QueryXML {
 			
 			TransformerFactory tf = TransformerFactory.newInstance();
 	        Transformer t = tf.newTransformer();
-	        t.transform(new DOMSource(doc), new StreamResult(ContainerPaths.users_filePath));
+	        t.transform(new DOMSource(doc), new StreamResult(FileResourceMapping.users_filePath));
 			
 			toRet = "DELETED";
 		}

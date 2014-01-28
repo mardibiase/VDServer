@@ -1,4 +1,4 @@
-package sources;
+package fileHandlers;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,7 +16,7 @@ import org.supercsv.io.ICsvListReader;
 import org.supercsv.io.ICsvListWriter;
 import org.supercsv.prefs.CsvPreference;
 
-import sources.UpdateCSV.ContainerPaths;
+import utils.FileResourceMapping;
 
 public class DeleteAutoveloxFromFeedback {
 
@@ -42,7 +42,7 @@ public class DeleteAutoveloxFromFeedback {
 		ICsvListReader listReader = null;
 		ICsvListWriter listWriter = null;
 		try {
-			listReader = new CsvListReader(new FileReader(ContainerPaths.feedback_filePath), CsvPreference.STANDARD_PREFERENCE);
+			listReader = new CsvListReader(new FileReader(FileResourceMapping.feedback_filePath), CsvPreference.STANDARD_PREFERENCE);
 
 			final CellProcessor[] processors = getProcessors();
 			List<Object> row; // generica row letta da file
@@ -55,7 +55,7 @@ public class DeleteAutoveloxFromFeedback {
 				}
 			}
 
-			listReader = new CsvListReader(new FileReader(ContainerPaths.feedback_filePath), CsvPreference.STANDARD_PREFERENCE);
+			listReader = new CsvListReader(new FileReader(FileResourceMapping.feedback_filePath), CsvPreference.STANDARD_PREFERENCE);
 			// check se rowToDelete è stata riempita
 			if (rowToDelete != null) {
 				// rileggi il file
@@ -69,7 +69,7 @@ public class DeleteAutoveloxFromFeedback {
 					}
 				}
 				// dalla collezione temp riscrivili su file
-				listWriter = new CsvListWriter(new FileWriter(ContainerPaths.feedback_filePath), CsvPreference.STANDARD_PREFERENCE);
+				listWriter = new CsvListWriter(new FileWriter(FileResourceMapping.feedback_filePath), CsvPreference.STANDARD_PREFERENCE);
 				for (int i = 0; i < tempArray.size(); i++) {
 					List<Object> lineToCopy = tempArray.get(i);
 					List<Object> Row = Arrays.asList(new Object[] { lineToCopy.get(0).toString(), lineToCopy.get(1).toString(), lineToCopy.get(2).toString(),

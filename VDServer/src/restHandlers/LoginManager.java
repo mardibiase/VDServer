@@ -1,4 +1,4 @@
-package sources;
+package restHandlers;
 
 import java.io.IOException;
 
@@ -15,6 +15,8 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
+import fileHandlers.QueryXMLUsers;
+
 @Path("/login")
 public class LoginManager {
 
@@ -25,7 +27,7 @@ public class LoginManager {
 	String doLogin(@FormParam("mail") String mail, @FormParam("pw") String pw) {
 		System.out.println("mail from POST: " + mail);
 		System.out.println("password from POST: " + pw);
-		QueryXML process = new QueryXML();
+		QueryXMLUsers process = new QueryXMLUsers();
 		String toReturn = "";
 		try {
 			toReturn = process.login(mail, pw);

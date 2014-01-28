@@ -1,4 +1,4 @@
-package sources;
+package restHandlers;
 
 import java.io.IOException;
 
@@ -15,6 +15,8 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
+import fileHandlers.QueryXMLUsers;
+
 @Path("/deleteUser")
 public class DeleteUser {
 
@@ -25,7 +27,7 @@ public class DeleteUser {
 	public @QueryParam("result")
 	String deleteUser(@FormParam("mail") String mail) {
 		String toRet = "";
-		QueryXML process = new QueryXML();
+		QueryXMLUsers process = new QueryXMLUsers();
 		try {
 			toRet = process.delete(mail);
 		} catch (XPathExpressionException e) {
